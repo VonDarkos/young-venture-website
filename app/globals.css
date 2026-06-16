@@ -201,18 +201,12 @@ body.nav-hovered .site-header {
     scroll-snap-stop: always;
   }
 
-  /* Lo slogan deve ricevere lo snap, ma non bloccare l'uscita */
-  .payoff-section.snap-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
-  }
-
+  .payoff-section.snap-section,
   footer {
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   }
 
-  /* Tutte le sezioni snap occupano una viewport */
   @supports (height: 100dvh) {
     .intro-snap > section,
     .snap-section:not(.payoff-section),
