@@ -117,50 +117,73 @@ export default function CommitmentsSection() {
     useState<Commitment | null>(null);
 
   const [mounted, setMounted] = useState(false);
-
-
   const [isClosing, setIsClosing] = useState(false);
 
-const closePopup = () => {
-  setIsClosing(true);
+  const closePopup = () => {
+    setIsClosing(true);
 
-  setTimeout(() => {
-    setSelectedCommitment(null);
-    setIsClosing(false);
-  }, 700);
-};
+    setTimeout(() => {
+      setSelectedCommitment(null);
+      setIsClosing(false);
+    }, 700);
+  };
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
-  if (selectedCommitment) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "";
-  }
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) return;
 
-  return () => {
-    document.body.style.overflow = "";
-  };
-}, [selectedCommitment]);
+    const section = document.querySelector(".commitments-section");
+    if (!section) return;
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          document.documentElement.classList.add("after-commitments");
+        } else {
+          document.documentElement.classList.remove("after-commitments");
+        }
+      },
+      {
+        threshold: 0.75,
+      }
+    );
 
+    observer.observe(section);
 
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("after-commitments");
+    };
+  }, []);
+
+  useEffect(() => {
+    if (selectedCommitment) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCommitment]);
 
   return (
     <>
-<section
-  data-header-theme="light"
-  className={`${styles.section} snap-section`}
->
-   <div className={styles.sectionHeader}>
-    <h2>Companies we back. People we believe in.</h2>
-  </div>
+      <section
+        data-header-theme="light"
+        className={`${styles.section} snap-section commitments-section`}
+      >
+        <div className={styles.sectionHeader}>
+          <h2>Companies we back. People we believe in.</h2>
+        </div>
 
-  <div className={styles.grid}>
-    {commitments.map((item) => (
+        <div className={styles.grid}>
+          {commitments.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -199,10 +222,12 @@ const closePopup = () => {
         selectedCommitment &&
         createPortal(
           <div
-  className={`${styles.detailOverlay} ${
-    isClosing ? styles.detailOverlayClosing : styles.detailOverlayOpen
-  }`}
->
+            className={`${styles.detailOverlay} ${
+              isClosing
+                ? styles.detailOverlayClosing
+                : styles.detailOverlayOpen
+            }`}
+          >
             <button
               type="button"
               className={styles.backButton}
@@ -233,30 +258,30 @@ const closePopup = () => {
               </div>
 
               <div className={styles.detailCard}>
-  <span className={styles.status}>
-    {selectedCommitment.status}
-  </span>
+                <span className={styles.status}>
+                  {selectedCommitment.status}
+                </span>
 
-  <Image
-    src={selectedCommitment.logo}
-    alt={`${selectedCommitment.name} logo`}
-    width={280}
-    height={110}
-    className={styles.detailLogo}
-  />
+                <Image
+                  src={selectedCommitment.logo}
+                  alt={`${selectedCommitment.name} logo`}
+                  width={280}
+                  height={110}
+                  className={styles.detailLogo}
+                />
 
-  <p>{selectedCommitment.shortDescription}</p>
+                <p>{selectedCommitment.shortDescription}</p>
 
-  <a
-  href={selectedCommitment.website}
-  target="_blank"
-  rel="noreferrer"
-  data-cursor="commitment"
-  className={styles.cardWebsite}
->
-  Website <span>↗</span>
-</a>
-</div>
+                <a
+                  href={selectedCommitment.website}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-cursor="commitment"
+                  className={styles.cardWebsite}
+                >
+                  Website <span>↗</span>
+                </a>
+              </div>
             </div>
           </div>,
           document.body
