@@ -132,33 +132,45 @@ export default function CommitmentsSection() {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (!isMobile) return;
+ useEffect(() => {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  if (!isMobile) return;
 
-    const section = document.querySelector(".commitments-section");
-    if (!section) return;
+  const section = document.querySelector<HTMLElement>(".commitments-section");
+  if (!section) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          document.documentElement.classList.add("after-commitments");
-        } else {
-          document.documentElement.classList.remove("after-commitments");
-        }
-      },
-      {
-        threshold: 0.75,
-      }
-    );
+  let ticking = false;
 
-    observer.observe(section);
+  const updateSnapState = () => {
+    const sectionTop = section.offsetTop;
+    const currentScroll = window.scrollY;
 
-    return () => {
-      observer.disconnect();
+    if (currentScroll >= sectionTop - 4) {
+      document.documentElement.classList.add("after-commitments");
+    } else {
       document.documentElement.classList.remove("after-commitments");
-    };
-  }, []);
+    }
+
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateSnapState);
+  };
+
+  updateSnapState();
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", updateSnapState);
+
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", updateSnapState);
+    document.documentElement.classList.remove("after-commitments");
+  };
+}, []);
 
   useEffect(() => {
     if (selectedCommitment) {

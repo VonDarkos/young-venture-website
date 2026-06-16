@@ -190,7 +190,7 @@ body.nav-hovered .site-header {
   }
 
   html.after-commitments {
-    scroll-snap-type: none;
+    scroll-snap-type: none !important;
   }
 
   body {
