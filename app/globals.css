@@ -185,16 +185,16 @@ body.nav-hovered .site-header {
 
 @media (max-width: 768px) {
   html {
-      scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
     scroll-behavior: auto;
   }
-
 
   body {
     overflow-x: hidden;
     overflow-y: auto;
   }
 
+  /* Sezioni che devono snapparsi */
   .intro-snap > section,
   .snap-section,
   .hero {
@@ -202,14 +202,17 @@ body.nav-hovered .site-header {
     scroll-snap-stop: always;
   }
 
-  .payoff-section.snap-section {
+  /* Slogan e footer devono essere scrollabili normalmente */
+  .payoff-section.snap-section,
+  footer {
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   }
 
+  /* Tutte le sezioni snap occupano una viewport */
   @supports (height: 100dvh) {
     .intro-snap > section,
-    .snap-section,
+    .snap-section:not(.payoff-section),
     .hero {
       height: 100dvh;
       min-height: 100dvh;
@@ -218,7 +221,7 @@ body.nav-hovered .site-header {
 
   @supports not (height: 100dvh) {
     .intro-snap > section,
-    .snap-section,
+    .snap-section:not(.payoff-section),
     .hero {
       height: 100vh;
       min-height: 100vh;
