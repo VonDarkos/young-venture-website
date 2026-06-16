@@ -93,9 +93,11 @@
     scroll-snap-stop: normal;
   }
 
-  .payoff-section {
+   .payoff-section {
     height: 160dvh;
     min-height: 160dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
   }
 
   .payoff-sticky {

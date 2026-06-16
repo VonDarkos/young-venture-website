@@ -196,14 +196,14 @@ body.nav-hovered .site-header {
 
   .intro-snap > section,
   .snap-section,
-  .hero {
+  .hero,
+  footer {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
-  .payoff-section.snap-section,
-  footer {
-    scroll-snap-align: none;
+  .payoff-section.snap-section {
+    scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
 
