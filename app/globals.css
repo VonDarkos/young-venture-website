@@ -183,15 +183,12 @@ body.nav-hovered .site-header {
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   html {
     scroll-snap-type: y mandatory;
     scroll-behavior: auto;
   }
 
-   html.logo-step-lock {
-    scroll-snap-type: none;
-  }
 
   body {
     overflow-x: hidden;

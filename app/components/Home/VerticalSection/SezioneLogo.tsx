@@ -221,14 +221,13 @@ useEffect(() => {
     const currentY = touchEvent.touches[0].clientY;
     const deltaY = startY - currentY;
 
-    const isGoingDown = deltaY > 0;
-    const isGoingUp = deltaY < 0;
+    const isScrollingDown = deltaY > 0;
+    const isScrollingUp = deltaY < 0;
 
-    if (isGoingDown && activeStep < 3) {
-      event.preventDefault();
-    }
+    const canGoNextInsideSection = isScrollingDown && activeStep < 3;
+    const canGoPrevInsideSection = isScrollingUp && activeStep > 1;
 
-    if (isGoingUp && activeStep > 1) {
+    if (canGoNextInsideSection || canGoPrevInsideSection) {
       event.preventDefault();
     }
   };
