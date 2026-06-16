@@ -13,31 +13,16 @@ export default function PageTransition({ children }: { children: ReactNode }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={pathname}
-          className="page-slide"
-          initial={{
-            x: "100%",
-            scale: 0.89,
-            borderRadius: 46,
-            opacity: 1,
-          }}
-          animate={{
-            x: 0,
-            scale: 1,
-            borderRadius: 0,
-            opacity: 1,
-          }}
-          exit={{
-            x: "-100%",
-            scale: 0.89,
-            borderRadius: 46,
-            opacity: 1,
-          }}
+          className="page-slide-motion"
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
           transition={{
             duration: 0.9,
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          {children}
+          <div className="page-slide-card">{children}</div>
         </motion.div>
       </AnimatePresence>
     </div>

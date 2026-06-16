@@ -4,9 +4,28 @@
   overflow-x: hidden;
 }
 
-.page-slide {
+.page-slide-motion {
   min-height: 100vh;
+  will-change: transform;
+}
+
+.page-slide-card {
+  min-height: 100vh;
+  transform-origin: top center;
+  transition:
+    transform 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+body.nav-hovered .page-slide-card {
+  transform: scale(0.89) translateY(104px);
+  border-radius: 46px;
   overflow: hidden;
-  transform-origin: center top;
-  will-change: transform, border-radius;
+  filter: brightness(0.92);
+  box-shadow:
+    0 55px 150px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
 }
