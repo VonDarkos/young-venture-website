@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import PageTransition from "./components/PageTransition";
 
 const youngVenturesFont = localFont({
   src: [
@@ -43,9 +44,9 @@ export default function RootLayout({
         <CustomCursor />
         <Header />
 
-        <main className="site-main">
-          {children}
-        </main>
+        <PageTransition>
+          <main className="site-main">{children}</main>
+        </PageTransition>
         <ScrollToTop/>
         <Footer/>
       </div>
