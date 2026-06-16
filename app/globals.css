@@ -11,6 +11,7 @@
 
 html {
   scroll-behavior: auto;
+   
 }
 
 html,
@@ -179,5 +180,42 @@ body.nav-hovered .site-header {
 
   .custom-cursor {
     display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: auto;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .intro-snap > section,
+  .snap-section,
+  .hero {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  @supports (height: 100dvh) {
+    .intro-snap > section,
+    .snap-section,
+    .hero {
+      height: 100dvh;
+      min-height: 100dvh;
+    }
+  }
+
+  @supports not (height: 100dvh) {
+    .intro-snap > section,
+    .snap-section,
+    .hero {
+      height: 100vh;
+      min-height: 100vh;
+    }
   }
 }
