@@ -151,7 +151,7 @@ const closePopup = () => {
 
   return (
     <>
-      <section data-header-theme="light" className={styles.section}>
+      <section data-header-theme="light" className={styles.section} snap-section>
    <div className={styles.sectionHeader}>
     <h2>Companies we back. People we believe in.</h2>
   </div>

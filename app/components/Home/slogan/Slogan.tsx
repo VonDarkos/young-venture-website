@@ -72,7 +72,7 @@ export default function Slogan() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="payoff-section">
+    <section ref={sectionRef} className="payoff-section snap-section">
       <div className="payoff-sticky">
         <h1 className="payoff-title">
           <span className="payoff-line">

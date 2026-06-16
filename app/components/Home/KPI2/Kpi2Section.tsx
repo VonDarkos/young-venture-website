@@ -18,7 +18,7 @@ export default function Kpi2Section() {
     const [theme, setTheme] = useState<"dark" | "light">("dark");
   const isLight = theme === "light";
   return (
-    <section   data-header-theme={isLight ? "light" : "dark"}  className={`${styles.kpi2Section} ${isLight ? styles.lightMode : ""}`}>
+    <section   data-header-theme={isLight ? "light" : "dark"}  className={`${styles.kpi2Section} ${isLight ? styles.lightMode : ""} snap-section`}>
             <button
         type="button"
         className={styles.themeSwitch}

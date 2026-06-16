@@ -173,7 +173,7 @@ export default function SezioneLogo({
 
   return (
     <section
-      className="sl-scroll-section"
+      className="sl-scroll-section snap-section"
       data-header-theme="light"
       onMouseLeave={resetCursor}
       onPointerLeave={resetCursor}
