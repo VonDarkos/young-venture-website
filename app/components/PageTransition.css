@@ -1,12 +1,19 @@
 .page-transition-root {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  background: #050505;
 }
 
 .page-slide-motion {
+  width: 100%;
   min-height: 100vh;
   will-change: transform;
+}
+
+.page-slide-motion:not(:only-child) {
+  position: absolute;
+  inset: 0;
 }
 
 .page-slide-card {
@@ -28,9 +35,4 @@ body.nav-hovered .page-slide-card {
   box-shadow:
     0 55px 150px rgba(0, 0, 0, 0.85),
     0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-.page-slide-motion {
-  position: absolute;
-  inset: 0;
-  width: 100%;
 }
