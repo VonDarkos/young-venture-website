@@ -140,13 +140,7 @@ export default function TeamPage() {
 
       <div className={styles.content}>
         <aside className={styles.filters}>
-          <p>Filters</p>
-
-          <div>
-            <button>Operations</button>
-            <button>Investment</button>
-            <button>Specialists</button>
-          </div>
+          <p>Cities</p>
 
           <div>
             <button>Milan</button>

@@ -1,6 +1,6 @@
 .teamPage {
   min-height: 100vh;
-  background: #f3f1ea;
+  background: #fff;
   color: #061f17;
   padding: clamp(120px, 13vw, 190px) clamp(20px, 4vw, 70px) 80px;
 }
