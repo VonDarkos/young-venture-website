@@ -219,21 +219,23 @@ export default function Header() {
         }}
       >
         <Link
-          href="/"
-          prefetch={false}
-          aria-label="Go to homepage"
-          className="site-logo"
-          onClick={closeMenu}
-        >
-          <Image
-            src="/images/logo-young-ventures.svg"
-            alt="Young Ventures"
-            width={120}
-            height={32}
-            priority
-            className="site-logo-img"
-          />
-        </Link>
+  href="/"
+  prefetch={false}
+  aria-label="Go to homepage"
+  className="site-logo"
+  onClick={closeMenu}
+  onMouseEnter={() => document.body.classList.add("nav-hovered")}
+  onMouseLeave={() => document.body.classList.remove("nav-hovered")}
+>
+  <Image
+    src="/images/logo-young-ventures.svg"
+    alt="Young Ventures"
+    width={120}
+    height={32}
+    priority
+    className="site-logo-img"
+  />
+</Link>
 
         <nav
           onMouseEnter={() => document.body.classList.add("nav-hovered")}
