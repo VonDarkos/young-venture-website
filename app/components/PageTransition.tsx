@@ -10,7 +10,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
 
   return (
     <div className="page-transition-root">
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={pathname}
           className="page-slide-motion"
