@@ -1,50 +1,121 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
 import styles from "./TeamPage.module.css";
 
-const teamMembers = [
+type TeamMember = {
+  name: string;
+  role: string;
+  image: string;
+  video: string;
+  category: string;
+  location: string;
+};
+
+const teamMembers: TeamMember[] = [
   {
     name: "Name Surname",
     role: "Investment Team, Milan",
-    image: "/images/team/team-1.jpg",
+    image: "/images/team-members/ragazzo.prova.jpg",
+    video: "/images/team-members/video-ragazzo-prova.mp4",
     category: "Investment",
     location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Founder Relations, London",
-    image: "/images/team/team-2.jpg",
+    image: "/images/team-members/team-2.jpg",
+    video: "/images/team-members/team-2.mp4",
     category: "Operations",
     location: "London",
   },
   {
     name: "Name Surname",
     role: "University Network, Milan",
-    image: "/images/team/team-3.jpg",
+    image: "/images/team-members/team-3.jpg",
+    video: "/images/team-members/team-3.mp4",
     category: "Specialists",
     location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Investment Team, London",
-    image: "/images/team/team-4.jpg",
+    image: "/images/team-members/team-4.jpg",
+    video: "/images/team-members/team-4.mp4",
     category: "Investment",
     location: "London",
   },
   {
     name: "Name Surname",
     role: "Platform Team, Milan",
-    image: "/images/team/team-5.jpg",
+    image: "/images/team-members/team-5.jpg",
+    video: "/images/team-members/team-5.mp4",
     category: "Operations",
     location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Venture Partner, Europe",
-    image: "/images/team/team-6.jpg",
+    image: "/images/team-members/team-6.jpg",
+    video: "/images/team-members/team-6.mp4",
     category: "Specialists",
     location: "Europe",
   },
 ];
+
+function TeamCard({ member }: { member: TeamMember }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const playVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  };
+
+  const stopVideo = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+  };
+
+  return (
+    <article
+      className={styles.card}
+      onMouseEnter={playVideo}
+      onMouseLeave={stopVideo}
+    >
+      <div className={styles.imageWrap}>
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className={styles.image}
+        />
+
+        <video
+          ref={videoRef}
+          className={styles.video}
+          src={member.video}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+
+        <span className={styles.hold}>hold to play</span>
+      </div>
+
+      <h2>{member.name}</h2>
+      <p>{member.role}</p>
+    </article>
+  );
+}
 
 export default function TeamPage() {
   return (
@@ -88,22 +159,7 @@ export default function TeamPage() {
 
         <div className={styles.grid}>
           {teamMembers.map((member) => (
-            <article key={member.name} className={styles.card}>
-              <div className={styles.imageWrap}>
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className={styles.image}
-                />
-
-                <span className={styles.hold}>hold to play</span>
-              </div>
-
-              <h2>{member.name}</h2>
-              <p>{member.role}</p>
-            </article>
+            <TeamCard key={member.name} member={member} />
           ))}
         </div>
       </div>
