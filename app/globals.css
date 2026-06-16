@@ -120,12 +120,6 @@ body[data-cursor="clean"] .custom-cursor {
   overflow: visible;
   background: #242424;
   transform-origin: top center;
-  transition:
-    transform 1.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-radius 1.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 1.35s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
 }
 
 /* Intro snap: solo le sezioni dentro IntroSnap sono alte 100vh */
@@ -134,7 +128,7 @@ body[data-cursor="clean"] .custom-cursor {
   min-height: 100vh;
 }
 
-body.nav-hovered .site-main {
+body.nav-hovered .page-slide {
   transform: scale(0.89) translateY(104px);
   border-radius: 46px;
   overflow: hidden;
