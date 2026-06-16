@@ -90,26 +90,24 @@ function TeamCard({ member }: { member: TeamMember }) {
       onMouseLeave={stopVideo}
     >
       <div className={styles.imageWrap}>
-        <Image
-          src={member.hoverImage}
-          alt={member.name}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className={styles.hoverImage}
-        />
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className={styles.image}
+          />
 
-        <video
-          ref={videoRef}
-          className={styles.video}
-          src={member.hoverImage}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
+          <Image
+            src={member.hoverImage}
+            alt={member.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className={styles.hoverImage}
+          />
 
-        <span className={styles.hold}>hold to play</span>
-      </div>
+          <span className={styles.hold}>hold to play</span>
+        </div>
 
       <h2>{member.name}</h2>
       <p>{member.role}</p>
