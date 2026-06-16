@@ -59,7 +59,8 @@ export default function SezioneLogo({
   const stageRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
-
+  const touchStartYRef = useRef<number | null>(null);
+  const isMobileRef = useRef(false);
   const blocksRef = useRef<HTMLElement[]>([]);
   const nodesRef = useRef<HTMLSpanElement[]>([]);
   const fillRef = useRef<HTMLDivElement | null>(null);
@@ -171,13 +172,64 @@ export default function SezioneLogo({
     if (el) nodesRef.current[index] = el;
   };
 
+
+  useEffect(() => {
+  const checkMobile = () => {
+    isMobileRef.current = window.matchMedia("(max-width: 1024px)").matches;
+  };
+
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
+
+const goNextStep = () => {
+  if (currentStep < 3) {
+    goToColor((currentStep + 1) as Step);
+    return true;
+  }
+
+  return false;
+};
+
+const goPrevStep = () => {
+  if (currentStep > 1) {
+    goToColor((currentStep - 1) as Step);
+    return true;
+  }
+
+  return false;
+};
+
   return (
     <section
       className="sl-scroll-section snap-section"
       data-header-theme="light"
       onMouseLeave={resetCursor}
       onPointerLeave={resetCursor}
-    >
+       onTouchStart={(event) => {
+    if (!isMobileRef.current) return;
+    touchStartYRef.current = event.touches[0].clientY;
+  }}
+  onTouchEnd={(event) => {
+    if (!isMobileRef.current) return;
+    if (touchStartYRef.current === null) return;
+
+    const endY = event.changedTouches[0].clientY;
+    const deltaY = touchStartYRef.current - endY;
+
+    touchStartYRef.current = null;
+
+    if (Math.abs(deltaY) < 35) return;
+
+    if (deltaY > 0) {
+      goNextStep();
+    } else {
+      goPrevStep();
+    }
+  }}
+>
       <div className="sl-sticky">
         <div className="sl-grid">
           <div className="sl-logo-stage" ref={stageRef} data-step="1">
