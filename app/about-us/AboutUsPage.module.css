@@ -9,15 +9,16 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: clamp(120px, 12vw, 180px) clamp(22px, 6vw, 90px);
-  background:
-    radial-gradient(circle at 15% 15%, rgba(218, 41, 145, 0.12), transparent 34%),
-    radial-gradient(circle at 85% 35%, rgba(0, 213, 255, 0.14), transparent 34%),
-    #f7f7f3;
+  padding: clamp(110px, 10vw, 160px) clamp(28px, 5vw, 80px);
+  background: #f7f7f3;
 }
 
 .heroInner {
-  max-width: 1180px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(320px, 0.42fr);
+  align-items: end;
+  gap: clamp(40px, 7vw, 120px);
 }
 
 .eyebrow,
@@ -38,20 +39,14 @@
   color: #7cff8b;
 }
 
-.hero h1 {
-  margin: 0;
-  font-size: clamp(4rem, 9vw, 10.5rem);
-  line-height: 0.86;
-  letter-spacing: -0.08em;
-  font-weight: 950;
-}
 
 .hero p {
-  max-width: 620px;
-  margin: 34px 0 0;
-  font-size: clamp(1.15rem, 1.5vw, 1.65rem);
-  line-height: 1.35;
-  color: rgba(6, 31, 23, 0.72);
+  max-width: 560px;
+  margin: 0 0 clamp(18px, 2vw, 32px);
+  font-size: clamp(1.1rem, 1.25vw, 1.45rem);
+  line-height: 1.15;
+  font-weight: 800;
+  color: rgba(0, 0, 0, 0.48);
 }
 
 .kpiSection {
@@ -419,10 +414,18 @@
 }
 
 @media (max-width: 640px) {
-  .hero {
-    min-height: 88vh;
-    padding-top: 120px;
-  }
+.hero {
+  min-height: 88vh;
+  padding: 120px 22px 70px;
+  align-items: flex-end;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 34px;
+}
 
   .hero h1,
   .sectionHeader h2,
@@ -431,6 +434,12 @@
   .closing h2 {
     font-size: clamp(3.1rem, 16vw, 5.6rem);
   }
+
+  .hero p {
+  max-width: 100%;
+  margin: 0;
+  font-size: 1.05rem;
+}
 
   .kpiSection {
     padding-inline: 18px;

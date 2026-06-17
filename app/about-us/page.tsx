@@ -108,21 +108,23 @@ export default function AboutUsPage() {
   return (
     <main className={styles.page}>
       <section className={styles.hero} data-header-theme="light">
-        <div className={styles.heroInner}>
-          <span className={styles.eyebrow}>About Young Ventures</span>
+  <div className={styles.heroInner}>
+    <h1>
+      Backing the
+      <br />
+      next generation
+      <br />
+      of European
+      <br />
+      founders.
+    </h1>
 
-          <h1>
-            Backing the next generation
-            <br />
-            of European founders.
-          </h1>
-
-          <p>
-            We invest in ambitious student founders, connecting capital,
-            universities and venture networks across Europe.
-          </p>
-        </div>
-      </section>
+    <p>
+      We invest in ambitious student founders, connecting capital,
+      universities and venture networks across Europe.
+    </p>
+  </div>
+</section>
 
       <section
         ref={kpiRef}
