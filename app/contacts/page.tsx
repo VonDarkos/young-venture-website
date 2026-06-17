@@ -30,40 +30,80 @@ const locations = [
   },
 ];
 
-function getTime(timezone: string) {
-  return new Intl.DateTimeFormat("en-GB", {
+function getClockAngles(timezone: string) {
+  const parts = new Intl.DateTimeFormat("en-GB", {
     timeZone: timezone,
-    hour: "2-digit",
-    minute: "2-digit",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
     hour12: false,
-  }).format(new Date());
+  }).formatToParts(new Date());
+
+  const hour = Number(parts.find((part) => part.type === "hour")?.value || 0);
+  const minute = Number(
+    parts.find((part) => part.type === "minute")?.value || 0
+  );
+  const second = Number(
+    parts.find((part) => part.type === "second")?.value || 0
+  );
+
+  return {
+    hour: ((hour % 12) + minute / 60) * 30,
+    minute: minute * 6,
+    second: second * 6,
+  };
+}
+
+function AnalogClock({ timezone }: { timezone: string }) {
+  const [angles, setAngles] = useState(() => getClockAngles(timezone));
+
+  useEffect(() => {
+    const updateClock = () => {
+      setAngles(getClockAngles(timezone));
+    };
+
+    updateClock();
+
+    const interval = window.setInterval(updateClock, 1000);
+
+    return () => {
+      window.clearInterval(interval);
+    };
+  }, [timezone]);
+
+  return (
+    <div className={styles.clock} aria-hidden="true">
+      <span
+        className={`${styles.hand} ${styles.hourHand}`}
+        style={{
+          transform: `translateX(-50%) rotate(${angles.hour}deg)`,
+        }}
+      />
+
+      <span
+        className={`${styles.hand} ${styles.minuteHand}`}
+        style={{
+          transform: `translateX(-50%) rotate(${angles.minute}deg)`,
+        }}
+      />
+
+      <span
+        className={`${styles.hand} ${styles.secondHand}`}
+        style={{
+          transform: `translateX(-50%) rotate(${angles.second}deg)`,
+        }}
+      />
+
+      <span className={styles.clockDot} />
+    </div>
+  );
 }
 
 export default function ContactPage() {
-  const [times, setTimes] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const updateTimes = () => {
-      const nextTimes: Record<string, string> = {};
-
-      locations.forEach((location) => {
-        nextTimes[location.city] = getTime(location.timezone);
-      });
-
-      setTimes(nextTimes);
-    };
-
-    updateTimes();
-    const interval = setInterval(updateTimes, 1000 * 30);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <main className={styles.page} data-header-theme="dark">
       <section className={styles.contactHero}>
         <div className={styles.background} />
-
         <div className={styles.overlay} />
 
         <div className={styles.inner}>
@@ -86,9 +126,7 @@ export default function ContactPage() {
           <div className={styles.grid}>
             {locations.map((location) => (
               <article className={styles.card} key={location.city}>
-                <div className={styles.clock}>
-                  {times[location.city] || "--:--"}
-                </div>
+                <AnalogClock timezone={location.timezone} />
 
                 <h2>{location.city}</h2>
 
