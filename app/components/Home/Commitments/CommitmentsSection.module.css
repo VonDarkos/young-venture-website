@@ -356,6 +356,43 @@
 }
 }
 
+/* ================= LAPTOP BASSI 1025px+ con altezza ridotta ================= */
+
+@media (min-width: 1025px) and (max-height: 720px) {
+  .section {
+    padding: 20px 64px 34px;
+  }
+
+  .sectionHeader {
+    margin-bottom: 22px;
+  }
+
+  .sectionHeader h2 {
+    font-size: clamp(2.2rem, 3vw, 3.2rem);
+    line-height: 0.92;
+  }
+
+  .card {
+    min-height: clamp(230px, 36vh, 250px);
+    padding: 24px 28px;
+    gap: 18px;
+  }
+
+  .logoWrap {
+    width: clamp(130px, 9vw, 190px);
+    height: clamp(46px, 4vw, 70px);
+  }
+
+  .card p {
+    font-size: clamp(0.82rem, 0.9vw, 1rem);
+    line-height: 1.35;
+  }
+
+  .ctaCard h2 {
+    font-size: clamp(1.8rem, 2.2vw, 2.8rem);
+  }
+}
+
 @media (min-width: 768px) and (max-width: 820px) {
   .section {
     height: auto;
