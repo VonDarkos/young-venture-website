@@ -39,6 +39,16 @@
   color: #7cff8b;
 }
 
+.hero h1 {
+  margin: 0;
+  font-size: clamp(4.8rem, 7.4vw, 9.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  font-weight: 950;
+  color: #000000;
+}
+
+
 
 .hero p {
   max-width: 560px;
