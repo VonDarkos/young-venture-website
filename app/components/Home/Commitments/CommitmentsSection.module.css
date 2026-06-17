@@ -329,6 +329,11 @@
     gap: 60px;
   }
 
+    .section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+    }
   .backButton {
     width: 72px;
     height: 72px;
@@ -337,6 +342,8 @@
   .metaRow {
     padding: 18px 0;
   }
+
+  
 }
 
 @media (min-width: 1920px) {
@@ -353,6 +360,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  
 }
 }
 
