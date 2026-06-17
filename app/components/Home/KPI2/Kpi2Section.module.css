@@ -835,7 +835,7 @@
     margin-top: 24px !important;
     grid-template-columns: 1.35fr 0.9fr 1.08fr;
     gap: 7px;
-    flex: 0.8;
+    flex: 1;
   }
 
   .ticketCard,
