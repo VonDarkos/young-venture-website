@@ -13,7 +13,7 @@
 .background {
   position: absolute;
   inset: 0;
-  background-image: url("/images/contact/contact-bg.jpg");
+  background-image: url("/images/hero/clean-tech.jpg");
   background-size: cover;
   background-position: center;
   transform: scale(1.02);
@@ -22,14 +22,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3, 28, 20, 0.78) 0%,
-      rgba(3, 28, 20, 0.62) 42%,
-      rgba(3, 28, 20, 0.86) 100%
-    ),
-    rgba(3, 28, 20, 0.48);
+  background: linear-gradient(90deg, #000000c7 0%, #0000009e 42%, #000000db 100%), #0000007a;
   backdrop-filter: blur(1px);
 }
 
