@@ -97,6 +97,18 @@
     font-size: clamp(19px, 3.1vw, 24px);
     line-height: 1.22;
   }
+
+  @keyframes aboutScrollOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-220px);
+  }
+}
 }
 
 @media (max-width: 520px) {
@@ -120,4 +132,27 @@
   .copy p + p {
     margin-top: 24px;
   }
+
+  @media (max-width: 520px) {
+  .hero {
+    min-height: 140vh;
+    padding: 0 18px;
+  }
+
+  .heroInner {
+    animation-range: exit 0% exit 70%;
+  }
+
+  @keyframes aboutScrollOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-120px);
+    }
+  }
+}
 }
