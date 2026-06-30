@@ -146,38 +146,19 @@ function FocusAreasSection() {
             aria-label="Focus areas"
           >
             <div className={styles.wheelArc} aria-hidden />
-
-            {Array.from({ length: FOCUS_ITEMS.length + 4 }).map((_, virtualIndex) => {
-              const offset = virtualIndex - 2;
-              const realIndex =
-                ((active + offset) % FOCUS_ITEMS.length + FOCUS_ITEMS.length) %
-                FOCUS_ITEMS.length;
-
-              const item = FOCUS_ITEMS[realIndex];
+            {FOCUS_ITEMS.map((item, i) => {
+              const dist = Math.abs(i - active);
+              const op = dist === 0 ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.3 : 0.14;
               const Icon = item.Icon;
-
-              const isActive = offset === 0;
-              const isSelectable = realIndex >= 0 && realIndex < FOCUS_ITEMS.length;
-
-              const op =
-                Math.abs(offset) === 0
-                  ? 1
-                  : Math.abs(offset) === 1
-                    ? 0.55
-                    : Math.abs(offset) === 2
-                      ? 0.32
-                      : 0.14;
-
               return (
                 <button
-                  key={`${realIndex}-${virtualIndex}`}
+                  key={item.id}
                   type="button"
-                  className={`${styles.wheelItem} ${isActive ? styles.active : ""}`}
-                  style={{ ["--offset" as string]: offset, opacity: op }}
-                  onClick={() => goTo(realIndex)}
+                  className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
+                  style={{ ["--i" as string]: i, opacity: op }}
+                  onClick={() => goTo(i)}
                   role="option"
-                  aria-selected={isActive}
-                  tabIndex={isActive ? 0 : -1}
+                  aria-selected={i === active}
                 >
                   <span className={styles.wheelInner}>
                     <span className={styles.wheelIcon}>
