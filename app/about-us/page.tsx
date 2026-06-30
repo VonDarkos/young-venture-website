@@ -34,13 +34,7 @@ export default function AboutUsPage() {
         </div>
 
         <div className={css.dx}>
-          {areas.map((area)=>
-          <div className="" key={area.id}>
-            <h3>{area.title}</h3>
-            <img src={area.icon} alt="" />
-            <img src={area.img} alt="image" />
-            </div>
-          )}
+         
         </div>
 
       </div>
