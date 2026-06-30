@@ -38,7 +38,6 @@
   animation: aboutFadeUp 0.9s ease both;
 }
 
-
 .copy {
   max-width: 1100px;
   margin: 0 auto;
@@ -71,6 +70,180 @@
   animation-delay: 0.36s;
 }
 
+.focusSection {
+  position: relative;
+  height: 700vh;
+  background: #f7f7f4;
+  color: #06172f;
+}
+
+.focusSticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  padding: 96px 64px 64px;
+}
+
+.focusTop {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.focusEyebrow {
+  margin: 0 0 18px;
+  font-size: clamp(16px, 1.2vw, 24px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: #da2991;
+}
+
+.focusTitle {
+  margin: 0;
+  font-size: clamp(56px, 5.4vw, 104px);
+  line-height: 0.96;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  color: #06172f;
+}
+
+.focusLine {
+  display: block;
+  width: 190px;
+  height: 6px;
+  margin-top: 30px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #da2991, #00e4e7);
+}
+
+.focusIntro {
+  max-width: 660px;
+  margin: 54px 0 0;
+  font-size: clamp(18px, 1.25vw, 25px);
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: #06172f;
+}
+
+.focusContent {
+  position: absolute;
+  left: 64px;
+  right: 0;
+  bottom: 0;
+  height: 58vh;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.focusWheel {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  padding-left: 120px;
+  z-index: 4;
+}
+
+.focusWheel::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: -120px;
+  width: 300px;
+  height: 760px;
+  border: 10px solid #da2991;
+  border-right: 0;
+  border-radius: 380px 0 0 380px;
+  opacity: 0.85;
+}
+
+.focusList {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.focusItem {
+  height: 112px;
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 26px;
+  align-items: center;
+  opacity: 0.26;
+  filter: grayscale(1);
+  transform: scale(0.96);
+  transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
+}
+
+.focusItem h3 {
+  max-width: 460px;
+  margin: 0;
+  font-size: clamp(23px, 1.8vw, 34px);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  color: #06172f;
+}
+
+.focusItemActive {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: scale(1);
+}
+
+.focusDot {
+  width: 74px;
+  height: 74px;
+  border-radius: 999px;
+  background: #aeeff2;
+  border: 5px solid #fff;
+  box-shadow: 0 0 24px rgba(0, 228, 231, 0.45);
+}
+
+.focusItemActive .focusDot {
+  background: #77db21;
+  box-shadow: 0 0 28px rgba(119, 219, 33, 0.6);
+}
+
+.focusImageWrap {
+  position: relative;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  border-top-left-radius: 999px;
+  box-shadow: -28px -20px 0 rgba(218, 41, 145, 0.8);
+}
+
+.focusImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: imageSlideRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes imageSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(120px) scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 @keyframes aboutFadeUp {
   from {
     opacity: 0;
@@ -83,9 +256,21 @@
   }
 }
 
+@keyframes aboutScrollOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-220px);
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
-    padding: 120px 22px 80px;
+    padding: 0 22px;
   }
 
   .title {
@@ -98,23 +283,43 @@
     line-height: 1.22;
   }
 
-  @keyframes aboutScrollOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
+  .focusSticky {
+    padding: 96px 24px 48px;
   }
 
-  to {
-    opacity: 0;
-    transform: translateY(-220px);
+  .focusTop {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-}
+
+  .focusIntro {
+    margin-top: 0;
+  }
+
+  .focusContent {
+    left: 24px;
+    right: 24px;
+    height: 56vh;
+    grid-template-columns: 1fr;
+  }
+
+  .focusWheel {
+    padding-left: 70px;
+  }
+
+  .focusImageWrap {
+    display: none;
+  }
 }
 
 @media (max-width: 520px) {
   .hero {
-    min-height: auto;
-    padding: 130px 18px 80px;
+    min-height: 140vh;
+    padding: 0 18px;
+  }
+
+  .heroInner {
+    animation-range: exit 0% exit 70%;
   }
 
   .title {
@@ -133,14 +338,51 @@
     margin-top: 24px;
   }
 
-  @media (max-width: 520px) {
-  .hero {
-    min-height: 140vh;
-    padding: 0 18px;
+  .focusSection {
+    height: 650vh;
   }
 
-  .heroInner {
-    animation-range: exit 0% exit 70%;
+  .focusSticky {
+    padding: 92px 18px 40px;
+  }
+
+  .focusEyebrow {
+    font-size: 14px;
+  }
+
+  .focusTitle {
+    font-size: clamp(42px, 13vw, 64px);
+  }
+
+  .focusContent {
+    left: 18px;
+    right: 18px;
+    bottom: 36px;
+    height: 48vh;
+  }
+
+  .focusWheel {
+    padding-left: 46px;
+  }
+
+  .focusWheel::before {
+    left: 0;
+    width: 210px;
+  }
+
+  .focusItem {
+    height: 104px;
+    grid-template-columns: 56px 1fr;
+    gap: 18px;
+  }
+
+  .focusItem h3 {
+    font-size: 24px;
+  }
+
+  .focusDot {
+    width: 56px;
+    height: 56px;
   }
 
   @keyframes aboutScrollOut {
@@ -154,5 +396,4 @@
       transform: translateY(-120px);
     }
   }
-}
 }
