@@ -106,8 +106,8 @@ function FocusAreasSection() {
         const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), total);
         const p = total > 0 ? scrolled / total : 0;
 
-        const exact = p * (FOCUS_ITEMS.length - 1);
-        const idx = Math.round(exact);
+        const exact = p * FOCUS_ITEMS.length;
+        const idx = Math.max(0,Math.min(FOCUS_ITEMS.length - 1, Math.floor(exact)));
 
         setWheelProgress(exact);
         setActive((prev) => (prev === idx ? prev : idx));
