@@ -1,7 +1,7 @@
-import { useState } from "react"
+
 import css from "./AboutUsPage.module.css"
 import type { Area } from "./areas"
-import { area } from "framer-motion/client"
+
 
 
 
