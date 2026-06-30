@@ -29,6 +29,10 @@
   color: #000;
   animation: aboutFadeUp 0.9s ease both;
 }
+.heroText {
+  will-change: transform, opacity;
+  transition: transform 0.08s linear, opacity 0.08s linear;
+}
 
 .copy {
   max-width: 1100px;

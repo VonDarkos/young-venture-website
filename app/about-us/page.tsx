@@ -1,32 +1,34 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import styles from "./AboutUsPage.module.css";
 
 export default function AboutUsPage() {
+  const textRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!textRef.current) return;
+
+      const scrollY = window.scrollY;
+      const moveY = Math.min(scrollY * 0.45, 180);
+
+      textRef.current.style.transform = `translateY(-${moveY}px)`;
+      textRef.current.style.opacity = `${Math.max(1 - scrollY / 450, 0)}`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className={styles.aboutPage}>
-      <section className={styles.hero} data-header-theme="light">
-        <div className={styles.heroInner}>
-          <h1 className={styles.title}>About us</h1>
-
-          <div className={styles.copy}>
-            <p>
-              Newton discovered gravity at 24. F. Scott Fitzgerald published his
-              first novel at 23. Young people have always created wonders. Why
-              shouldn’t we invest in them?
-            </p>
-
-            <p>
-              Young Ventures is the youngest VC ever created. Build by students
-              across the best universities in the world and backed by the best
-              professors. Our job is to find the people building the future and
-              bet on them.
-            </p>
-
-            <p>
-              We are ready to uncover ideas looking for where they hide; in a
-              lab, in a thesis, in a half-finished line of code. We are Young
-              Ventures and we are born to scout the invisible.
-            </p>
-          </div>
+      <section className={styles.heroSection}>
+        <div ref={textRef} className={styles.heroText}>
+          <p className={styles.label}>ABOUT US</p>
+          <h1>Backing the next generation of founders.</h1>
         </div>
       </section>
     </main>
