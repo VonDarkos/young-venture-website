@@ -1,0 +1,114 @@
+.aboutPage {
+  min-height: 100vh;
+  background: #f7f7f4;
+  color: #050505;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 24px 96px;
+  background: #f7f7f4;
+}
+
+.heroInner {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin: 0 0 72px;
+  font-size: clamp(72px, 10vw, 150px);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  color: #000;
+  animation: aboutFadeUp 0.9s ease both;
+}
+
+.copy {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.copy p {
+  margin: 0 auto;
+  max-width: 1080px;
+  font-size: clamp(20px, 1.45vw, 28px);
+  line-height: 1.18;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: #050505;
+  animation: aboutFadeUp 0.9s ease both;
+}
+
+.copy p + p {
+  margin-top: 28px;
+}
+
+.copy p:nth-child(1) {
+  animation-delay: 0.12s;
+}
+
+.copy p:nth-child(2) {
+  animation-delay: 0.24s;
+}
+
+.copy p:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+@keyframes aboutFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 120px 22px 80px;
+  }
+
+  .title {
+    margin-bottom: 56px;
+    font-size: clamp(64px, 15vw, 110px);
+  }
+
+  .copy p {
+    font-size: clamp(19px, 3.1vw, 24px);
+    line-height: 1.22;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    min-height: auto;
+    padding: 130px 18px 80px;
+  }
+
+  .title {
+    margin-bottom: 48px;
+    font-size: clamp(56px, 18vw, 82px);
+    letter-spacing: -0.075em;
+  }
+
+  .copy p {
+    font-size: 18px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+  }
+
+  .copy p + p {
+    margin-top: 24px;
+  }
+}
