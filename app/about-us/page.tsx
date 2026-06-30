@@ -3,87 +3,196 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./AboutUsPage.module.css";
 
-const focusItems = [
-  {
-    title: "Digital and frontier technologies",
-    image: "/images/hero/deep-tech.jpg",
-  },
-  {
-    title: "Robotics and industrial automation",
-    image: "/images/hero/youth.jpg",
-  },
-  {
-    title: "Sustainability and advanced industries",
-    image: "/images/hero/clean-tech.jpg",
-  },
-  {
-    title: "Human augmentation and advanced materials",
-    image: "/images/hero/deep-tech.jpg",
-  },
-  {
-    title: "Space, defense and frontier systems",
-    image: "/images/hero/youth.jpg",
-  },
-  {
-    title: "Computational biology and medical technologies",
-    image: "/images/hero/clean-tech.jpg",
-  },
-  {
-    title: "Climate, energy and infrastructure",
-    image: "/images/hero/deep-tech.jpg",
-  },
+/* ── Icone (stroke, currentColor) ───────────────────────────── */
+function CpuIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+    </svg>
+  );
+}
+function BulbIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M9 18h6M10 22h4" />
+      <path d="M15.1 14c.2-.8.8-1.4 1.3-2 1.3-1.3 1.6-2.5 1.6-3.5A6 6 0 1 0 6 8.5c0 1 .3 2.2 1.6 3.5.5.6 1.1 1.2 1.3 2" />
+    </svg>
+  );
+}
+function LeafIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z" />
+      <path d="M2 21c0-3 1.9-5.4 5.1-6" />
+    </svg>
+  );
+}
+function NetworkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" />
+    </svg>
+  );
+}
+function RocketIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1Z" />
+      <path d="M12 15l-3-3a22 22 0 0 1 2-4A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22 22 0 0 1-4 2Z" />
+      <path d="M9 12H4s.5-2.8 2-4c1.7-1.3 5 0 5 0M12 15v5s2.8-.5 4-2c1.3-1.7 0-5 0-5" />
+    </svg>
+  );
+}
+function AtomIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="12" cy="12" r="1" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.5" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)" />
+    </svg>
+  );
+}
+function DnaIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M4 3c0 6 16 6 16 12M20 21c0-6-16-6-16-12" />
+      <path d="M7 5h10M7 19h10M6 9h12M6 15h12" />
+    </svg>
+  );
+}
+
+/* ── Dati: 7 voci. Le prime 5 dal mockup, le ultime 2 inventate. ─
+   Sostituisci i placeholder mettendo image: "/percorso.jpg"        */
+const FOCUS_ITEMS = [
+  { id: 1, label: "Digital and frontier technologies", Icon: CpuIcon, bg: "linear-gradient(135deg,#0a1a3f,#1e3a6e)", image: null as string | null },
+  { id: 2, label: "Digital and frontier technologies", Icon: BulbIcon, bg: "linear-gradient(135deg,#2b1a4f,#5b3fb0)", image: null as string | null },
+  { id: 3, label: "Sustainability and advanced industries", Icon: LeafIcon, bg: "linear-gradient(135deg,#0e3a1f,#2f9e4f)", image: null as string | null },
+  { id: 4, label: "Human argumentation and advanced materials", Icon: NetworkIcon, bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)", image: null as string | null },
+  { id: 5, label: "Digital and frontier technologies", Icon: RocketIcon, bg: "linear-gradient(135deg,#0a2a3f,#1f8ea0)", image: null as string | null },
+  { id: 6, label: "Robotics and industrial automation", Icon: AtomIcon, bg: "linear-gradient(135deg,#3f1a0e,#c0562e)", image: null as string | null },
+  { id: 7, label: "Computational biology and life sciences", Icon: DnaIcon, bg: "linear-gradient(135deg,#0e2f3f,#19a3c3)", image: null as string | null },
 ];
 
-export default function AboutUsPage() {
-  const focusRef = useRef<HTMLElement | null>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+function FocusAreasSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
-    let frameId: number | null = null;
-
-    const updateActiveItem = () => {
-      const section = focusRef.current;
-      if (!section) return;
-
-      const rect = section.getBoundingClientRect();
-      const scrollable = rect.height - window.innerHeight;
-
-      if (scrollable <= 0) return;
-
-      const current = Math.min(Math.max(-rect.top, 0), scrollable);
-      const progress = current / scrollable;
-
-      const nextIndex = Math.min(
-        focusItems.length - 1,
-        Math.floor(progress * focusItems.length)
-      );
-
-      setActiveIndex(nextIndex);
-    };
-
+    let ticking = false;
     const onScroll = () => {
-      if (frameId) return;
-
-      frameId = window.requestAnimationFrame(() => {
-        updateActiveItem();
-        frameId = null;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const el = sectionRef.current;
+        if (!el) return;
+        const vh = window.innerHeight;
+        const total = el.offsetHeight - vh;
+        const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), total);
+        const p = total > 0 ? scrolled / total : 0;
+        let idx = Math.floor(p * FOCUS_ITEMS.length);
+        idx = Math.max(0, Math.min(FOCUS_ITEMS.length - 1, idx));
+        setActive((prev) => (prev === idx ? prev : idx));
       });
     };
-
-    updateActiveItem();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-
-      if (frameId) {
-        window.cancelAnimationFrame(frameId);
-      }
-    };
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const goTo = (i: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const total = el.offsetHeight - window.innerHeight;
+    const top = el.offsetTop + ((i + 0.5) / FOCUS_ITEMS.length) * total;
+    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+  };
+
+  const current = FOCUS_ITEMS[active];
+
+  return (
+    <section ref={sectionRef} className={styles.focusSection} data-header-theme="light">
+      <div className={styles.focusSticky}>
+        <div className={styles.focusTop}>
+          <div>
+            <p className={styles.focusLabel}>Focus areas</p>
+            <h2 className={styles.focusHeading}>Our definition of deep tech</h2>
+            <div className={styles.focusUnderline} />
+          </div>
+          <p className={styles.focusDesc}>
+            Our focus spans sectors where scientific breakthroughs can unlock meaningful economic and
+            societal impact, including climate and energy technologies, advanced materials, robotics,
+            industrial automation, medical technologies, computational biology, and frontier
+            physics-based innovations.
+          </p>
+        </div>
+
+        <div className={styles.focusBody}>
+          {/* Colonna sinistra: rullo voci */}
+          <div
+            className={styles.wheel}
+            style={{ ["--active" as string]: active }}
+            role="listbox"
+            aria-label="Focus areas"
+          >
+            <div className={styles.wheelTrack}>
+              <div className={styles.wheelLine} aria-hidden />
+              {FOCUS_ITEMS.map((item, i) => {
+                const dist = Math.abs(i - active);
+                const op = dist === 0 ? 1 : dist === 1 ? 0.5 : dist === 2 ? 0.28 : 0.12;
+                const Icon = item.Icon;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
+                    style={{ opacity: op }}
+                    onClick={() => goTo(i)}
+                    role="option"
+                    aria-selected={i === active}
+                  >
+                    <span className={styles.wheelIcon}>
+                      <Icon />
+                    </span>
+                    <span className={styles.wheelLabel}>{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Colonna destra: immagine con slide-in da destra */}
+          <div className={styles.mediaCol}>
+            <div className={styles.media}>
+              <div className={styles.mediaInner}>
+                <div key={active} className={styles.slide} style={{ background: current.bg }}>
+                  {current.image ? (
+                    /* SOSTITUISCI: metti image nel FOCUS_ITEMS e questa img parte da sola */
+                    <img src={current.image} alt={current.label} />
+                  ) : (
+                    <span className={styles.slidePlaceholder}>
+                      {current.label}
+                      <small>Immagine {active + 1} — placeholder</small>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function AboutUsPage() {
   return (
     <main className={styles.aboutPage}>
       <section className={styles.hero} data-header-theme="light">
@@ -113,66 +222,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section
-        ref={focusRef}
-        className={styles.focusSection}
-        data-header-theme="light"
-      >
-        <div className={styles.focusSticky}>
-          <div className={styles.focusTop}>
-            <div>
-              <p className={styles.focusEyebrow}>Focus areas</p>
-              <h2 className={styles.focusTitle}>
-                Our definition <br />
-                of deep tech
-              </h2>
-              <span className={styles.focusLine} />
-            </div>
-
-            <p className={styles.focusIntro}>
-              Our focus spans sectors where scientific breakthroughs can unlock
-              meaningful economic and societal impact, including climate and
-              energy technologies, advanced materials, robotics, industrial
-              automation, medical technologies, computational biology, and
-              frontier physics-based innovations.
-            </p>
-          </div>
-
-          <div className={styles.focusContent}>
-            <div className={styles.focusWheel}>
-              <div
-                className={styles.focusList}
-                style={{
-                  transform: `translateY(calc(50% - ${
-                    activeIndex * 112
-                  }px - 56px))`,
-                }}
-              >
-                {focusItems.map((item, index) => (
-                  <div
-                    key={item.title}
-                    className={`${styles.focusItem} ${
-                      index === activeIndex ? styles.focusItemActive : ""
-                    }`}
-                  >
-                    <span className={styles.focusDot} />
-                    <h3>{item.title}</h3>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.focusImageWrap}>
-              <img
-                key={focusItems[activeIndex].image + activeIndex}
-                src={focusItems[activeIndex].image}
-                alt={focusItems[activeIndex].title}
-                className={styles.focusImage}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <FocusAreasSection />
     </main>
   );
 }
