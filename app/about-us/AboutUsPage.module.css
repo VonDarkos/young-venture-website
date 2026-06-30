@@ -94,12 +94,9 @@
   }
 }
 
-/* ===========================================================
-   FOCUS AREAS — header sopra, ruota+cerchio sotto (full-bleed)
-   =========================================================== */
 .focusSection {
   position: relative;
-  height: 520vh;          /* ↑ scroll più lungo per voce, ↓ più rapido */
+  height: 520vh;
   background: #f7f7f4;
 }
 
@@ -112,7 +109,6 @@
   overflow: hidden;
 }
 
-/* ── Fascia 1: header ── */
 .focusInner {
   width: 100%;
   max-width: 1920px;
@@ -139,6 +135,7 @@
 
 .focusHeading {
   margin: 0;
+  max-width: 820px;
   font-size: clamp(40px, 5.2vw, 72px);
   line-height: 0.98;
   font-weight: 800;
@@ -157,13 +154,11 @@
 
 .focusDesc {
   margin: 0;
-
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 1.5;
   color: #3a4456;
 }
 
-/* ── Fascia 2: full-bleed, centrata verticalmente ── */
 .focusBody {
   position: relative;
   flex: 1 1 auto;
@@ -171,10 +166,6 @@
   min-height: 0;
 }
 
-/* ── RUOTA (orbita) — calibra qui ──
-   --R    raggio:   ↑ arco più dritto · ↓ più curvo
-   --step angolo tra le voci (= gap verticale)
-   --ix   X del punto attivo (ore 3) dal bordo sinistro */
 .wheel {
   --R: 460px;
   --step: 18deg;
@@ -188,7 +179,10 @@
   height: 0;
   pointer-events: none;
 }
-.wheel > * { pointer-events: auto; }
+
+.wheel > * {
+  pointer-events: auto;
+}
 
 .wheelArc {
   position: absolute;
@@ -210,14 +204,15 @@
   top: 0;
   width: 0;
   height: 0;
+  padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
   transform-origin: 0 0;
   transform: rotate(calc(var(--offset) * var(--step)));
   transition:
-    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.5s ease;
+    transform 0.12s linear,
+    opacity 0.12s linear;
 }
 
 .wheelInner {
@@ -230,10 +225,9 @@
   width: max-content;
   transform-origin: 30px 50%;
   transform: translateY(-50%) rotate(calc(var(--offset) * -1 * var(--step)));
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.12s linear;
 }
 
-/* separatore tratteggiato sotto le voci NON attive */
 .wheelInner::after {
   content: "";
   position: absolute;
@@ -242,7 +236,10 @@
   bottom: -26px;
   border-top: 1px dashed #c4ccd4;
 }
-.wheelItem.active .wheelInner::after { display: none; }
+
+.wheelItem.active .wheelInner::after {
+  display: none;
+}
 
 .wheelIcon {
   flex: 0 0 auto;
@@ -254,31 +251,41 @@
   color: #3aa9c4;
   background: #dff0f5;
   box-shadow: 0 0 0 7px rgba(247, 247, 244, 0.95);
-  transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .wheelItem.active .wheelIcon {
   color: #fff;
   background: linear-gradient(135deg, #4cbf2e, #2f9e1f);
-  box-shadow: 0 12px 30px rgba(60, 170, 40, 0.35), 0 0 0 7px rgba(247, 247, 244, 0.95);
+  box-shadow:
+    0 12px 30px rgba(60, 170, 40, 0.35),
+    0 0 0 7px rgba(247, 247, 244, 0.95);
   transform: scale(1.08);
 }
 
 .wheelLabel {
   position: relative;
-  max-width: 100%;
+  max-width: 420px;
+  text-align: left;
   font-size: clamp(20px, 1.55vw, 26px);
   line-height: 1.12;
   font-weight: 500;
   letter-spacing: -0.01em;
   color: #9aa3ad;
-  transition: color 0.4s ease, font-weight 0.4s ease;
+  transition:
+    color 0.25s ease,
+    font-weight 0.25s ease;
 }
 
 .wheelItem.active .wheelLabel {
   color: #0a1a3f;
   font-weight: 700;
 }
+
 .wheelItem.active .wheelLabel::after {
   content: "";
   position: absolute;
@@ -290,9 +297,7 @@
   background: #2f9e1f;
 }
 
-/* ── CERCHIO (bleed a destra) ── */
 .media {
-
   position: absolute;
   top: 50%;
   right: 0;
@@ -306,6 +311,7 @@
 }
 
 .mediaInner {
+  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -315,14 +321,19 @@
 
 .slide {
   position: absolute;
-  inset: 11px;
+  inset: 0;
   border-radius: 50%;
   overflow: hidden;
   display: grid;
   place-items: center;
   animation: slideInRight 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .slidePlaceholder {
   display: flex;
@@ -335,14 +346,25 @@
   font-weight: 700;
   line-height: 1.2;
 }
-.slidePlaceholder small { font-size: 13px; font-weight: 400; opacity: 0.7; }
 
-@keyframes slideInRight {
-  from { opacity: 0; transform: translateX(80px); }
-  to   { opacity: 1; transform: translateX(0); }
+.slidePlaceholder small {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.7;
 }
 
-/* ── Tablet/Mobile ── */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
     padding: 120px 22px 80px;
@@ -358,20 +380,44 @@
     line-height: 1.22;
   }
 
-  .focusSection { height: 380vh; }
-  .focusTop { grid-template-columns: 1fr; gap: 18px; }
+  .focusSection {
+    height: 380vh;
+  }
+
+  .focusTop {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .wheel {
     --R: 1100px;
     --step: 9deg;
     --ix: 56px;
     width: 100%;
   }
-  .wheelLabel { max-width: 12ch; font-size: clamp(17px, 4.6vw, 22px); }
-  .wheelIcon { width: 50px; height: 50px; }
-  .wheelInner { left: calc(var(--R) - 25px); transform-origin: 25px 50%; }
-  .wheelInner::after { left: 72px; right: -20px; }
+
+  .wheelLabel {
+    max-width: 12ch;
+    font-size: clamp(17px, 4.6vw, 22px);
+  }
+
+  .wheelIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .wheelInner {
+    left: calc(var(--R) - 25px);
+    transform-origin: 25px 50%;
+  }
+
+  .wheelInner::after {
+    left: 72px;
+    right: -20px;
+  }
+
   .media {
-    --mw: min(280px, 60%);
+    width: min(280px, 60%);
     top: auto;
     bottom: 6%;
     right: 50%;
@@ -407,6 +453,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wheelItem, .wheelInner, .wheelIcon, .wheelLabel { transition: none; }
-  .slide { animation: none; }
+  .wheelItem,
+  .wheelInner,
+  .wheelIcon,
+  .wheelLabel {
+    transition: none;
+  }
+
+  .slide {
+    animation: none;
+  }
 }
