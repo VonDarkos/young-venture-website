@@ -120,7 +120,7 @@ function FocusAreasSection() {
   return (
     <section ref={sectionRef} className={styles.focusSection} data-header-theme="light">
       <div className={styles.focusSticky}>
-        {/* Header (incolonnato, leggibile) */}
+        {/* ── Fascia 1: header ── */}
         <div className={styles.focusInner}>
           <div className={styles.focusTop}>
             <div>
@@ -137,51 +137,52 @@ function FocusAreasSection() {
           </div>
         </div>
 
-        {/* Ruota: arco + icone in orbita (bleed a sinistra) */}
-        <div
-          className={styles.wheel}
-          style={{ ["--active" as string]: active }}
-          role="listbox"
-          aria-label="Focus areas"
-        >
-          <div className={styles.wheelArc} aria-hidden />
-          {FOCUS_ITEMS.map((item, i) => {
-            const dist = Math.abs(i - active);
-            const op = dist === 0 ? 1 : dist === 1 ? 0.5 : dist === 2 ? 0.28 : 0.12;
-            const Icon = item.Icon;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
-                style={{ ["--i" as string]: i, opacity: op }}
-                onClick={() => goTo(i)}
-                role="option"
-                aria-selected={i === active}
-              >
-                <span className={styles.wheelInner}>
-                  <span className={styles.wheelIcon}>
-                    <Icon />
+        {/* ── Fascia 2: ruota (sx) + cerchio (dx) ── */}
+        <div className={styles.focusBody}>
+          <div
+            className={styles.wheel}
+            style={{ ["--active" as string]: active }}
+            role="listbox"
+            aria-label="Focus areas"
+          >
+            <div className={styles.wheelArc} aria-hidden />
+            {FOCUS_ITEMS.map((item, i) => {
+              const dist = Math.abs(i - active);
+              const op = dist === 0 ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.3 : 0.14;
+              const Icon = item.Icon;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
+                  style={{ ["--i" as string]: i, opacity: op }}
+                  onClick={() => goTo(i)}
+                  role="option"
+                  aria-selected={i === active}
+                >
+                  <span className={styles.wheelInner}>
+                    <span className={styles.wheelIcon}>
+                      <Icon />
+                    </span>
+                    <span className={styles.wheelLabel}>{item.label}</span>
                   </span>
-                  <span className={styles.wheelLabel}>{item.label}</span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Media circolare (bleed a destra) */}
-        <div className={styles.media}>
-          <div className={styles.mediaInner}>
-            <div key={active} className={styles.slide} style={{ background: current.bg }}>
-              {current.image ? (
-                <img src={current.image} alt={current.label} />
-              ) : (
-                <span className={styles.slidePlaceholder}>
-                  {current.label}
-                  <small>Immagine {active + 1} — placeholder</small>
-                </span>
-              )}
+          <div className={styles.media}>
+            <div className={styles.mediaInner}>
+              <div key={active} className={styles.slide} style={{ background: current.bg }}>
+                {current.image ? (
+                  <img src={current.image} alt={current.label} />
+                ) : (
+                  <span className={styles.slidePlaceholder}>
+                    {current.label}
+                    <small>Immagine {active + 1} — placeholder</small>
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>

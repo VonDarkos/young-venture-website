@@ -1,9 +1,9 @@
 /* ===========================================================
-   FOCUS AREAS — orbita "character select" (full-bleed)
+   FOCUS AREAS — header sopra, ruota+cerchio sotto (full-bleed)
    =========================================================== */
 .focusSection {
   position: relative;
-  height: 520vh;          /* ↑ più scroll per voce, ↓ più rapido */
+  height: 520vh;          /* ↑ scroll più lungo per voce, ↓ più rapido */
   background: #f7f7f4;
 }
 
@@ -11,15 +11,18 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100%;
-  overflow: hidden;        /* clippa i bleed ai bordi del viewport */
+  display: flex;
+  flex-direction: column;   /* fascia header poi fascia body */
+  overflow: hidden;         /* clippa i bleed laterali */
 }
 
-/* Header in un contenitore leggibile, centrato */
+/* ── Fascia 1: header (entro i margini) ── */
 .focusInner {
+  width: 100%;
   max-width: 1320px;
   margin: 0 auto;
   padding: clamp(40px, 7vh, 88px) clamp(24px, 5vw, 80px) 0;
+  flex: 0 0 auto;
 }
 
 .focusTop {
@@ -64,42 +67,51 @@
   color: #3a4456;
 }
 
-/* ── RUOTA (orbita) ────────────────────────────────────────
-   Tre leve per calibrare la curva:                          */
+/* ── Fascia 2: contenitore full-bleed, centrato verticalmente ── */
+.focusBody {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+/* ── RUOTA (orbita) — calibra qui ──
+   --R    raggio:   ↑ arco più dritto · ↓ più curvo
+   --step angolo tra le voci (= gap verticale)
+   --ix   X del punto attivo (ore 3) dal bordo sinistro */
 .wheel {
-  --R: 820px;     /* raggio orbita: ↑ arco più dritto, ↓ più curvo */
-  --step: 12deg;  /* distanza angolare tra le voci (= gap verticale) */
-  --ix: 170px;    /* X del punto attivo (ore 3) dal bordo sinistro  */
-  --cx: calc(var(--ix) - var(--R));   /* centro orbita (fuori a sx) */
+  --R: 460px;
+  --step: 18deg;
+  --ix: 210px;
+  --cx: calc(var(--ix) - var(--R));
 
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 50%;                 /* ancorata al centro della fascia body */
   width: min(620px, 50%);
-  pointer-events: none;   /* i click passano solo ai <button> */
+  height: 0;
+  pointer-events: none;
 }
 .wheel > * { pointer-events: auto; }
 
-/* L'arco = anello da gradiente ritagliato con mask */
 .wheelArc {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: calc(var(--ix) - 2 * var(--R));
   width: calc(2 * var(--R));
   height: calc(2 * var(--R));
   margin-top: calc(-1 * var(--R));
   border-radius: 50%;
-  background: conic-gradient(from 220deg, #19c3d6, #7b5cff, #e6007e, #e6007e);
+  background: conic-gradient(from 230deg, #19c3d6, #7b5cff, #e6007e, #e6007e);
   -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
   mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .wheelItem {
   position: absolute;
   left: var(--cx);
-  top: 50%;
+  top: 0;
   width: 0;
   height: 0;
   border: 0;
@@ -112,16 +124,27 @@
 
 .wheelInner {
   position: absolute;
-  left: calc(var(--R) - 30px);   /* porta l'icona sul punto dell'arco */
+  left: calc(var(--R) - 30px);
   top: 0;
   display: flex;
   align-items: center;
   gap: 22px;
   width: max-content;
-  transform-origin: 30px 50%;     /* pivot sul centro icona */
+  transform-origin: 30px 50%;
   transform: translateY(-50%) rotate(calc((var(--active) - var(--i)) * var(--step)));
   transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
+
+/* separatore tratteggiato sotto le voci NON attive */
+.wheelInner::after {
+  content: "";
+  position: absolute;
+  left: 82px;               /* dopo l'icona */
+  right: -40px;
+  bottom: -26px;
+  border-top: 1px dashed #c4ccd4;
+}
+.wheelItem.active .wheelInner::after { display: none; }
 
 .wheelIcon {
   flex: 0 0 auto;
@@ -144,6 +167,7 @@
 }
 
 .wheelLabel {
+  position: relative;
   max-width: 16ch;
   font-size: clamp(20px, 1.55vw, 26px);
   line-height: 1.12;
@@ -157,16 +181,26 @@
   color: #0a1a3f;
   font-weight: 700;
 }
+.wheelItem.active .wheelLabel::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  background: #2f9e1f;
+}
 
-/* ── MEDIA (bleed a destra) ─────────────────────────────── */
+/* ── CERCHIO (bleed a destra), centrato nella fascia body ── */
 .media {
-  --mw: min(680px, 78vh);
+  --mw: min(680px, 80%);
   position: absolute;
   top: 50%;
   right: 0;
   width: var(--mw);
-  height: var(--mw);
-  transform: translate(34%, -50%);   /* spinge ~1/3 fuori dal bordo dx */
+  aspect-ratio: 1 / 1;
+  transform: translate(34%, -50%);   /* ~1/3 fuori dal bordo destro */
   padding: 11px;
   border-radius: 50%;
   background: linear-gradient(135deg, #e6007e, #7b5cff, #19c3d6);
@@ -190,7 +224,6 @@
   place-items: center;
   animation: slideInRight 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
-
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 
 .slidePlaceholder {
@@ -211,25 +244,26 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ── Tablet/Mobile ──────────────────────────────────────── */
+/* ── Tablet/Mobile ── */
 @media (max-width: 900px) {
   .focusSection { height: 380vh; }
   .focusTop { grid-template-columns: 1fr; gap: 18px; }
   .wheel {
-    --R: 1100px;   /* arco quasi dritto su mobile */
-    --step: 8deg;
+    --R: 1100px;
+    --step: 9deg;
     --ix: 56px;
     width: 100%;
-    top: 38%;
   }
-  .wheelLabel { max-width: 11ch; font-size: clamp(17px, 4.6vw, 22px); }
+  .wheelLabel { max-width: 12ch; font-size: clamp(17px, 4.6vw, 22px); }
   .wheelIcon { width: 50px; height: 50px; }
   .wheelInner { left: calc(var(--R) - 25px); transform-origin: 25px 50%; }
+  .wheelInner::after { left: 72px; right: -20px; }
   .media {
-    --mw: min(300px, 46vh);
-    top: 78%;
+    --mw: min(280px, 60%);
+    top: auto;
+    bottom: 6%;
     right: 50%;
-    transform: translate(50%, -50%);  /* su mobile la centro, niente bleed */
+    transform: translate(50%, 0);   /* su mobile centrata, niente bleed */
   }
 }
 
