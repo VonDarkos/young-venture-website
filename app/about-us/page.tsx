@@ -40,7 +40,9 @@ export default function FocusAreasSection() {
               {items.map((item, index) => (
                 <div
                   key={index}
-                  className={`${styles.item} ${item.active ? styles.active : ""}`}
+                  className={`${styles.item} ${styles[`item${index + 1}`]} ${
+                    item.active ? styles.active : ""
+                  }`}
                 >
                   <div className={styles.iconWrap}>
                     <Icon type={item.icon} />

@@ -73,17 +73,17 @@
 
 .leftGraphic {
   position: absolute;
-  left: -225px;
-  top: 10px;
-  width: 900px;
-  height: 710px;
+  left: -300px;
+  top: 20px;
+  width: 850px;
+  height: 720px;
   z-index: 3;
 }
 
 .arc {
   position: absolute;
-  left: -390px;
-  top: -18px;
+  left: -255px;
+  top: -20px;
   width: 650px;
   height: 760px;
   border-radius: 50%;
@@ -96,28 +96,55 @@
 
 .items {
   position: absolute;
-  left: 330px;
-  top: 10px;
-  width: 620px;
+  inset: 0;
 }
 
 .item {
-  position: relative;
+  position: absolute;
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 46px;
+  grid-template-columns: 120px 1fr;
+  gap: 54px;
   align-items: center;
-  min-height: 138px;
+  width: 670px;
   opacity: 0.42;
 }
 
-.item:not(:last-child)::after {
+.item::after {
   content: "";
   position: absolute;
   left: 250px;
   right: 0;
-  bottom: 0;
+  bottom: -28px;
   border-bottom: 1px dashed rgba(4, 26, 53, 0.17);
+}
+
+.item5::after {
+  display: none;
+}
+
+.item1 {
+  left: 330px;
+  top: 35px;
+}
+
+.item2 {
+  left: 420px;
+  top: 175px;
+}
+
+.item3 {
+  left: 435px;
+  top: 330px;
+}
+
+.item4 {
+  left: 390px;
+  top: 500px;
+}
+
+.item5 {
+  left: 300px;
+  top: 640px;
 }
 
 .iconWrap {
