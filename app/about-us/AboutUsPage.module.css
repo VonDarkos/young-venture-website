@@ -157,7 +157,7 @@
 
 .focusDesc {
   margin: 0;
-  
+
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 1.5;
   color: #3a4456;
@@ -264,7 +264,7 @@
 
 .wheelLabel {
   position: relative;
-  max-width: 16ch;
+  max-width: 100%;
   font-size: clamp(20px, 1.55vw, 26px);
   line-height: 1.12;
   font-weight: 500;
