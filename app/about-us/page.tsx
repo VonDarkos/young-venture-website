@@ -1,6 +1,7 @@
 import { useState } from "react"
 import css from "./AboutUsPage.module.css"
 import type { Area } from "./areas"
+import { area } from "framer-motion/client"
 
 
 
@@ -33,7 +34,13 @@ export default function AboutUsPage() {
         </div>
 
         <div className={css.dx}>
-          cerchio
+          {areas.map((area)=>
+          <div className="" key={area.id}>
+            <h3>{area.title}</h3>
+            <img src={area.icon} alt="" />
+            <img src={area.img} alt="image" />
+            </div>
+          )}
         </div>
 
       </div>
