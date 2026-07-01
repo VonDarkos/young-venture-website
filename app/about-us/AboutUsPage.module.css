@@ -823,8 +823,6 @@
   }
 
   .collegeHeader {
-    grid-template-columns: 1fr;
-    gap: 22px;
     padding-bottom: 56px;
   }
 
