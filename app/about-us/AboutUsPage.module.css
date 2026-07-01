@@ -519,7 +519,7 @@
   --step: 19deg;
   --ix: 125px;
 
-  left: -55px;
+  left: -15px;
   top: 58%;
   width: 32%;
 }
@@ -548,7 +548,7 @@
   }
 
  .focusContent {
-  left: 42%;
+  left: 52%;
   top: 58%;
   width: 300px;
 }
