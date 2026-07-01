@@ -855,3 +855,187 @@
     font-size: 30px;
   }
 }
+
+/* BELIEF SECTION */
+
+.beliefsSection {
+  min-height: 100vh;
+  padding: clamp(80px, 7vw, 130px) clamp(24px, 5vw, 90px);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(218, 41, 145, 0.16), transparent 24%),
+    radial-gradient(circle at 88% 72%, rgba(0, 228, 231, 0.12), transparent 26%),
+    linear-gradient(135deg, #020914 0%, #061325 45%, #020914 100%);
+  color: #ffffff;
+}
+
+.beliefsInner {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.6fr;
+  gap: clamp(56px, 8vw, 140px);
+}
+
+.beliefsIntro {
+  padding-top: 10px;
+}
+
+.beliefsIntro span {
+  display: block;
+  margin-bottom: 18px;
+  color: #da2991;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.beliefsIntro h2 {
+  margin: 0;
+  max-width: 420px;
+  font-size: clamp(56px, 5.4vw, 96px);
+  line-height: 0.95;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.beliefsLine {
+  width: 145px;
+  height: 4px;
+  margin: 28px 0 34px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #da2991, #00e4e7);
+}
+
+.beliefsIntro p {
+  max-width: 320px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 21px;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
+}
+
+.beliefsList {
+  width: 100%;
+}
+
+.beliefItem {
+  display: grid;
+  grid-template-columns: 54px 82px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding: 21px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.beliefItem:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.beliefNumber {
+  color: #da2991;
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.beliefItem:nth-child(n + 4) .beliefNumber {
+  color: #3f8ee8;
+}
+
+.beliefItem:nth-child(7) .beliefNumber {
+  color: #00e4e7;
+}
+
+.beliefIcon {
+  width: 64px;
+  height: 64px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #da2991;
+}
+
+.beliefItem:nth-child(n + 4) .beliefIcon {
+  color: #3f8ee8;
+}
+
+.beliefItem:nth-child(7) .beliefIcon {
+  color: #00e4e7;
+}
+
+.beliefIcon span {
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.beliefText h3 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(19px, 1.35vw, 25px);
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.beliefText p {
+  margin: 4px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(18px, 1.25vw, 23px);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.beliefText p span {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .beliefsSection {
+    padding: 80px 22px;
+  }
+
+  .beliefsInner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .beliefsIntro h2 {
+    font-size: clamp(48px, 13vw, 76px);
+  }
+
+  .beliefsIntro p {
+    font-size: 18px;
+  }
+
+  .beliefItem {
+    grid-template-columns: 38px 58px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  .beliefNumber {
+    font-size: 28px;
+  }
+
+  .beliefIcon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .beliefIcon span {
+    font-size: 27px;
+  }
+
+  .beliefText h3 {
+    font-size: 18px;
+  }
+
+  .beliefText p {
+    font-size: 16px;
+  }
+}

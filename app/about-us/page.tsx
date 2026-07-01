@@ -2,6 +2,7 @@ import styles from "./AboutUsPage.module.css";
 import AboutHero from "./AboutHero";
 import FocusAreasSection from "./FocusAreasSection";
 import CollegeDeepTechSection from "./CollegeDeepTechSection";
+import BeliefsSection from "./BeliefsSection";
 
 export default function AboutUsPage() {
   return (
@@ -9,6 +10,7 @@ export default function AboutUsPage() {
       <AboutHero />
       <FocusAreasSection />
       <CollegeDeepTechSection />
+      <BeliefsSection/>
     </main>
   );
 }
