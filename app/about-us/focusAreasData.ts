@@ -18,7 +18,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/digital-frontier",
     Icon: CpuIcon,
     bg: "linear-gradient(135deg,#0a1a3f,#1e3a6e)",
-    image: null as string | null,
+    image: "/images/hero/deep-tech.jpg"
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/sustainability",
     Icon: LeafIcon,
     bg: "linear-gradient(135deg,#0e3a1f,#2f9e4f)",
-    image: null as string | null,
+    image: "/images/hero/youth.jpg"
   },
   {
     id: 4,
