@@ -517,9 +517,9 @@
  .wheel {
   --R: 430px;
   --step: 19deg;
-  --ix: 95px;
+  --ix: 125px;
 
-  left: -95px;
+  left: -55px;
   top: 58%;
   width: 32%;
 }
