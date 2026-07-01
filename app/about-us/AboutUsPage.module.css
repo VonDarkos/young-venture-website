@@ -734,69 +734,113 @@
 
 .collegeSection {
   min-height: 100vh;
-  padding: clamp(70px, 9vw, 140px) clamp(24px, 5vw, 96px);
+  padding: clamp(90px, 10vw, 160px) clamp(24px, 6vw, 110px);
   background: #f7f7f4;
   color: #071a33;
 }
 
 .collegeInner {
-  max-width: 980px;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-.collegeInner h2 {
-  margin: 0 0 28px;
-  font-size: clamp(44px, 5vw, 88px);
-  line-height: 0.95;
-  font-weight: 900;
-  letter-spacing: -0.055em;
+.collegeHeader {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: clamp(40px, 7vw, 120px);
+  align-items: start;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(7, 26, 51, 0.16);
+}
+
+.collegeHeader span {
+  color: #e6007e;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
-.collegeInner p {
+.collegeHeader h2 {
   margin: 0;
-  max-width: 860px;
-  font-size: clamp(20px, 1.8vw, 32px);
-  line-height: 1.42;
+  max-width: 980px;
+  font-size: clamp(46px, 5vw, 92px);
+  line-height: 0.92;
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.collegeGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(56px, 8vw, 140px);
+  padding-top: 56px;
+}
+
+.collegeLead {
+  margin: 0;
+  max-width: 480px;
+  font-size: clamp(18px, 1.35vw, 25px);
+  line-height: 1.45;
   font-weight: 500;
   letter-spacing: -0.035em;
 }
 
-.collegeInner p + p {
-  margin-top: 24px;
+.collegeCopy {
+  max-width: 720px;
 }
 
-.collegeInner h3 {
-  margin: 54px 0 30px;
-  max-width: 980px;
-  font-size: clamp(26px, 2.5vw, 44px);
-  line-height: 1.12;
+.collegeCopy h3 {
+  margin: 0 0 34px;
+  font-size: clamp(24px, 2vw, 38px);
+  line-height: 1.1;
   font-weight: 900;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
 }
 
-.collegeInner h4 {
-  margin: 54px 0 0;
-  font-size: clamp(26px, 2.4vw, 42px);
-  line-height: 1.25;
+.collegeCopy p {
+  margin: 0;
+  max-width: 650px;
+  font-size: clamp(16px, 1.15vw, 21px);
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: rgba(7, 26, 51, 0.82);
+}
+
+.collegeCopy p + p {
+  margin-top: 22px;
+}
+
+.collegeCopy h4 {
+  margin: 44px 0 0;
+  font-size: clamp(23px, 1.8vw, 34px);
+  line-height: 1.18;
   font-weight: 900;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.05em;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .collegeSection {
-    padding: 72px 22px;
+    padding: 88px 22px;
   }
 
-  .collegeInner h2 {
-    font-size: clamp(42px, 12vw, 58px);
+  .collegeHeader,
+  .collegeGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
-  .collegeInner p {
-    font-size: 20px;
+  .collegeHeader {
+    padding-bottom: 34px;
   }
 
-  .collegeInner h3,
-  .collegeInner h4 {
-    font-size: 26px;
+  .collegeHeader h2 {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+
+  .collegeGrid {
+    padding-top: 36px;
   }
 }
