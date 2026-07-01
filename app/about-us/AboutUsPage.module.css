@@ -746,6 +746,8 @@
 
 .collegeHeader {
   padding-bottom: clamp(70px, 8vw, 130px);
+  display: flex;
+  justify-content: center;
 }
 
 .collegeHeader span {
@@ -758,7 +760,7 @@
 
 .collegeHeader h2 {
   margin: 0;
-  max-width: 1050px;
+
   font-size: clamp(72px, 8vw, 150px);
   line-height: 0.88;
   font-weight: 950;
