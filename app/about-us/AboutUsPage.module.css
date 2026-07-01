@@ -745,10 +745,6 @@
 }
 
 .collegeHeader {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-
-  align-items: end;
   padding-bottom: clamp(70px, 8vw, 130px);
 }
 
