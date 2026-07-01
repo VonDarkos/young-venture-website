@@ -438,7 +438,8 @@
   }
 }
 
-@media (min-width: 1025px) and (max-width: 1600px) {
+
+@media (min-width: 1281px) and (max-width: 1600px) {
   .focusInner {
     padding-left: clamp(32px, 4vw, 64px);
     padding-right: clamp(32px, 4vw, 64px);
@@ -488,6 +489,95 @@
   .media {
     right: clamp(0px, 2vw, 4vw);
     width: clamp(460px, 42vw, 660px);
+    transform: translate(20%, -50%);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .focusInner {
+    padding: 46px 40px 0;
+  }
+
+  .focusTop {
+    grid-template-columns: 0.9fr 1fr;
+    gap: 40px;
+  }
+
+  .focusHeading {
+    max-width: 480px;
+    font-size: clamp(48px, 5vw, 62px);
+  }
+
+  .focusDesc {
+    max-width: 520px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .wheel {
+    --R: 390px;
+    --step: 17deg;
+    --ix: 165px;
+
+    left: -28px;
+    top: 57%;
+    width: 34%;
+  }
+
+  .wheelIcon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .wheelInner {
+    left: calc(var(--R) - 27px);
+    gap: 16px;
+    transform-origin: 27px 50%;
+  }
+
+  .wheelLabel {
+    max-width: 250px;
+    font-size: 17px;
+    line-height: 1.12;
+  }
+
+  .wheelInner::after {
+    left: 72px;
+    right: -20px;
+    bottom: -22px;
+  }
+
+  .focusContent {
+    left: 43%;
+    top: 57%;
+    width: 300px;
+  }
+
+  .focusContentNumber {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+
+  .focusContent h3 {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .focusContent p {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .focusContent a {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+
+  .media {
+    top: 57%;
+    right: -30px;
+    width: 430px;
     transform: translate(20%, -50%);
   }
 }
