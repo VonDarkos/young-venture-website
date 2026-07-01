@@ -373,7 +373,7 @@
   position: absolute;
   top: 50%;
   right: 4vw;
-  width: clamp(28.75rem, 24.09vw + 13.33rem, 51.88rem); 
+  width: 720px; 
 
   aspect-ratio: 1 / 1;
   transform: translate(18%, -50%);
