@@ -852,4 +852,8 @@
    .collegeHeader h2 {
     font-size: 45px;
    }
+
+   .collegeSplit h3 {
+    font-size: 30px;
+  }
 }
