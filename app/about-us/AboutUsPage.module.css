@@ -747,7 +747,7 @@
 .collegeHeader {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: clamp(50px, 8vw, 140px);
+
   align-items: end;
   padding-bottom: clamp(70px, 8vw, 130px);
 }
@@ -768,6 +768,7 @@
   font-weight: 950;
   letter-spacing: -0.085em;
   text-transform: uppercase;
+  text-align: center;
   color: #071a33;
 }
 
