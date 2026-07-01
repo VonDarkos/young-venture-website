@@ -684,7 +684,7 @@
 
 @media (max-width: 520px) {
   .focusInner {
-    padding: 50px 18px 0;
+    padding: 30px 18px 0;
   }
 
   .focusHeading {
@@ -732,49 +732,119 @@
 
 /* TERZA SEZIONE */
 
+.collegeSection {
+  min-height: 100vh;
+  padding: clamp(90px, 9vw, 150px) clamp(24px, 6vw, 120px);
+  background: #f7f7f4;
+  color: #071a33;
+}
+
+.collegeInner {
+  max-width: 1680px;
+  margin: 0 auto;
+}
+
+.collegeHeader {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(50px, 8vw, 140px);
+  align-items: end;
+  padding-bottom: clamp(70px, 8vw, 130px);
+}
+
+.collegeHeader span {
+  color: #e6007e;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.collegeHeader h2 {
+  margin: 0;
+  max-width: 1050px;
+  font-size: clamp(72px, 8vw, 150px);
+  line-height: 0.88;
+  font-weight: 950;
+  letter-spacing: -0.085em;
+  text-transform: uppercase;
+  color: #071a33;
+}
+
 .collegeSplit {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
-  gap: clamp(56px, 8vw, 140px);
-  padding-top: 64px;
+  gap: clamp(70px, 9vw, 170px);
   align-items: start;
 }
 
 .collegeSplit h3 {
-  position: sticky;
-  top: 120px;
   margin: 0;
-  max-width: 620px;
+  max-width: 720px;
   color: #071a33;
-  font-size: clamp(44px, 4.7vw, 86px);
-  line-height: 0.95;
-  font-weight: 900;
-  letter-spacing: -0.075em;
+  font-size: clamp(64px, 6vw, 118px);
+  line-height: 0.9;
+  font-weight: 950;
+  letter-spacing: -0.085em;
 }
 
 .collegeCopy {
-  max-width: 720px;
-  padding-top: 6px;
+  max-width: 760px;
+  padding-top: 8px;
 }
 
 .collegeCopy p {
   margin: 0;
-  max-width: 650px;
-  font-size: clamp(16px, 1.05vw, 20px);
-  line-height: 1.65;
-  font-weight: 500;
-  letter-spacing: -0.025em;
+  max-width: 720px;
   color: rgba(7, 26, 51, 0.82);
+  font-size: clamp(18px, 1.25vw, 24px);
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: -0.03em;
 }
 
 .collegeCopy p + p {
-  margin-top: 22px;
+  margin-top: 28px;
 }
 
 .collegeCopy h4 {
-  margin: 44px 0 28px;
-  font-size: clamp(22px, 1.6vw, 32px);
-  line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: -0.045em;
+  margin: 56px 0 34px;
+  color: #050505;
+  font-size: clamp(28px, 2.1vw, 42px);
+  line-height: 1.08;
+  font-weight: 950;
+  letter-spacing: -0.055em;
+}
+
+@media (max-width: 900px) {
+  .collegeSection {
+    padding: 90px 22px;
+  }
+
+  .collegeHeader {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-bottom: 56px;
+  }
+
+  .collegeHeader h2 {
+    font-size: clamp(54px, 15vw, 86px);
+  }
+
+  .collegeSplit {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .collegeSplit h3 {
+    font-size: clamp(48px, 13vw, 76px);
+  }
+
+  .collegeCopy p {
+    font-size: 18px;
+  }
+
+  .collegeCopy h4 {
+    font-size: 28px;
+  }
 }
